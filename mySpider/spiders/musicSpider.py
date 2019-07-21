@@ -5,7 +5,7 @@ from mySpider.items import MyspiderItem
 
 class MusicspiderSpider(scrapy.Spider):
     name = 'musicSpider'#爬虫名称
-    allowed_domains = ["http://www.130v.com/"]  #爬虫网页范围
+    allowed_domains = ["www.130v.com/"]  #爬虫网页范围  http://要去掉
     start_urls = ['http://www.130v.com/'] #起始url
 # 处理响应内容的方法，写入本地
     def parse(self, response):
@@ -21,7 +21,7 @@ class MusicspiderSpider(scrapy.Spider):
         for  i  in range(0,len(title)):
             item = MyspiderItem()
             item["title"] = title[i]
-            item["songUrl"] = songUrl[i]
+            item["songUrl"] ="http://www.130v.com/"+ songUrl[i]
             yield item   #每构建一个item生成器就返回给Pipeline 相当多线程啦
         #     items.append(item)
         # return items
